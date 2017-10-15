@@ -7,9 +7,10 @@
  *  Author: Nikolay
  */
 
-#define F_CPU		16000000UL
-#define F_SCL		100000UL
-#define BAUD_RATE	9600UL
+#define F_CPU			16000000UL
+#define F_SCL			100000UL
+#define BAUD_RATE		9600UL
+#define SOFT_BAUD_RATE	9600UL
 
 #include <avr/io.h>
 #include <util/twi.h>
