@@ -20,6 +20,3 @@
 #include <time.h>
 #include <stdbool.h>
 #include <avr/interrupt.h>
-
-
-

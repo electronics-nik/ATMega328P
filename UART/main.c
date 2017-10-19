@@ -1,0 +1,46 @@
+/*
+ * UART.c
+ * CPU: ATMega328P
+ * F_CPU: 16MHz
+ *
+ * Created: 16.10.2017 2:48:46
+ * Author : Nikolay
+ */ 
+
+#include "uart.h"
+#include "soft_uart.h"
+
+void init()
+{
+	uart_init(UART_BAUD_SELECT(BAUD_RATE, F_CPU));
+	soft_uart_init();
+	soft_uart_turn_rx_on();
+
+	sei();
+}
+
+int main(void)
+{
+	char c;
+	init();
+
+	_delay_ms( 500 );
+
+	soft_uart_puts("Test SOFT UART\n");
+	uart_puts("Test UART\n");
+	
+	while( true )
+	{
+		while ( uart_available() )
+		{
+			c = uart_getc();
+			soft_uart_putchar( c );
+		}
+		
+		while ( soft_uart_kbhit() ) 
+		{
+			c = soft_uart_getchar();
+			soft_uart_putchar(c);
+			uart_putc( c );
+		}
+}

@@ -5,6 +5,9 @@
  *
  * Created: 15.10.2017 21:27:06
  *  Author: Nikolay
+ *
+ * Взято отсюда: https://github.com/g4lvanix/I2C-master-lib
+ *
  */ 
 
  #include "i2c.h"
