@@ -257,5 +257,12 @@ extern void uart1_flush(void);
 
 /**@}*/
 
+extern void uart_put_longint( const uint32_t value );
+extern void uart_put_ulongint( uint32_t value );
+extern void uart_put_int( int value );
+extern void uart_puthex_nibble( const uint8_t value );
+extern void uart_puthex_byte( const uint8_t value );
+extern void uart_puthex_long( uint32_t value );
+extern void uart_putbin_byte( const uint8_t value );
 
 #endif /* UART_H_ */

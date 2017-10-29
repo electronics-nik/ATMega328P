@@ -27,7 +27,26 @@ int main(void)
 	_delay_ms( 500 );
 
 	soft_uart_puts("Test SOFT UART\n");
+
+	uart_puts("Test addon\n");
+	uart_put_longint( 2000356435 );
+	uart_putc( '\n' );
+	uart_put_ulongint( 4235634566 );
+	uart_putc( '\n' );
+	uart_put_int( -567 );
+	uart_putc( '\n' );
+	uart_puthex_nibble( 12 );
+	uart_putc( '\n' );
+	uart_puthex_byte( 25 );
+	uart_putc( '\n' );
+	uart_puthex_long( 45546 );
+	uart_putc( '\n' );
+	uart_putbin_byte( 123 );
+	uart_putc( '\n' );
+
 	uart_puts("Test UART\n");
+
+
 	
 	while( true )
 	{
@@ -40,7 +59,7 @@ int main(void)
 		while ( soft_uart_kbhit() ) 
 		{
 			c = soft_uart_getchar();
-			soft_uart_putchar(c);
 			uart_putc( c );
 		}
+	}
 }

@@ -790,3 +790,65 @@ void uart1_flush(void)
 }/* uart1_flush */
 
 #endif
+
+void uart_put_int( const int value )
+{
+	char buffer[10];
+	uart_puts( itoa( value, buffer, 10 ) );
+}
+
+void uart_put_longint( const uint32_t value )
+{
+	char buffer[15];
+	uart_puts( ltoa( value, buffer, 10 ) );
+}
+
+void uart_put_ulongint( const uint32_t value )
+{
+	char buffer[15];
+	uart_puts( ultoa( value, buffer, 10 ) );
+}
+
+void uart_puthex_nibble(const uint8_t value)
+{
+	uint8_t c = value & 0x0f;
+	if ( c > 9 )
+	{
+		c += 'A'-10;
+	}
+	else
+	{
+		c += '0';
+	}
+
+	uart_putc(c);
+}
+
+void uart_puthex_byte( const uint8_t value )
+{
+	uart_puthex_nibble( value >> 4 );
+	uart_puthex_nibble( value );
+}
+
+void uart_puthex_long( const uint32_t value )
+{
+	uart_puthex_byte( (uint8_t)( value >> 24 ) );
+	uart_puthex_byte( (uint8_t)( value >> 16 ) );
+	uart_puthex_byte( (uint8_t)( value >> 8 ) );
+	uart_puthex_byte( (uint8_t)( value ) );
+}
+
+void uart_putbin_byte( const uint8_t value )
+{
+	for ( int8_t i= 7; i >= 0; i-- )
+	{
+		if ( value & ( 1 << i ) )
+		{
+			uart_putc( '1' );
+		}
+		else
+		{
+			uart_putc( '0' );
+		}
+	}
+}

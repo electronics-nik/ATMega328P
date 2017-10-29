@@ -20,3 +20,7 @@
 #include <time.h>
 #include <stdbool.h>
 #include <avr/interrupt.h>
+#include <util/atomic.h>
+#include <string.h>
+#include <stdint.h>
+#include <stdlib.h>
