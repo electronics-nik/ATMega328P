@@ -14,10 +14,10 @@
 #define HIGH_LEVEL		1
 #define LOW_LEVEL		0
 
-#define PIN_READ(port, pin)						(port & ( 1 << pin ))
-#define PIN_WRITE(port, pin, value)				((value == LOW_LEVEL) ? (port &= ~(1 << pin)) : (port |= (1 << pin)))
-#define PIN_MODE_OUTPUT(ddr, pin)				(ddr |= ( 1 << pin ))
-#define PIN_MODE_INPUT(port, ddr, pin)			(ddr &= ~( 1 << pin )); (port &= ~( 1 << pin ))
-#define PIN_MODE_INPUT_PULLUP(port, ddr, pin)	(ddr &= ~( 1 << pin )); (port |= ( 1 << pin ))
+#define PIN_READ(in_port, pin)						(in_port & ( 1 << pin ))
+#define PIN_WRITE(out_port, pin, value)				((value == LOW_LEVEL) ? (out_port &= ~(1 << pin)) : (out_port |= (1 << pin)))
+#define PIN_MODE_OUTPUT(ddr, pin)					(ddr |= ( 1 << pin ))
+#define PIN_MODE_INPUT(out_port, ddr, pin)			(ddr &= ~( 1 << pin )); (out_port &= ~( 1 << pin ))
+#define PIN_MODE_INPUT_PULLUP(out_port, ddr, pin)	(ddr &= ~( 1 << pin )); (out_port |= ( 1 << pin ))
 
 #endif /* PINS_H_ */
