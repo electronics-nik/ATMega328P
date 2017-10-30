@@ -34,7 +34,7 @@ uint8_t crc8( const uint8_t * addr, uint8_t len )
 uint8_t Reset( void )
 {
 	uint8_t Retries = 128;
-	PIN_MODE_INPUT(OW_PORT, OW_DDR, OW_PIN);
+	pin_mode_input(OW_PORT, OW_DDR, OW_PIN);
 	
 	do {
 		if ( --Retries == 0 )
@@ -43,16 +43,16 @@ uint8_t Reset( void )
 		}
 
 		_delay_us( 2 );
-	} while ( ! PIN_READ(OW_IN, OW_PIN) );
+	} while ( ! pin_read(OW_IN, OW_PIN) );
 	
-	PIN_WRITE( OW_PORT, OW_PIN, LOW_LEVEL);
-	PIN_MODE_OUTPUT(OW_DDR, OW_PIN);
+	pin_write( OW_PORT, OW_PIN, LOW_LEVEL);
+	pin_mode_output(OW_DDR, OW_PIN);
 	_delay_us( 480 );
 	
-	PIN_MODE_INPUT(OW_PORT, OW_DDR, OW_PIN);
+	pin_mode_input(OW_PORT, OW_DDR, OW_PIN);
 	_delay_us( 70 );
 	
-	uint8_t state = !PIN_READ(OW_IN, OW_PIN);
+	uint8_t state = !pin_read(OW_IN, OW_PIN);
 	_delay_us( 410 );
 
 	return state;
@@ -60,33 +60,33 @@ uint8_t Reset( void )
 
 void Write_Bit( uint8_t bit )
 {
-	PIN_WRITE( OW_PORT, OW_PIN, LOW_LEVEL);
-	PIN_MODE_OUTPUT(OW_DDR, OW_PIN);
+	pin_write( OW_PORT, OW_PIN, LOW_LEVEL);
+	pin_mode_output(OW_DDR, OW_PIN);
 
 	if( bit & 1 )
 	{
 		_delay_us( 10 );
-		PIN_WRITE( OW_PORT, OW_PIN, HIGH_LEVEL);
+		pin_write( OW_PORT, OW_PIN, HIGH_LEVEL);
 		_delay_us( 55 );
 	}
 	else
 	{
 		_delay_us( 65 );
-		PIN_WRITE( OW_PORT, OW_PIN, HIGH_LEVEL);
+		pin_write( OW_PORT, OW_PIN, HIGH_LEVEL);
 		_delay_us( 5 );
 	}
 }
 
 uint8_t Read_Bit( void )
 {
-	PIN_MODE_OUTPUT(OW_DDR, OW_PIN);
-	PIN_WRITE( OW_PORT, OW_PIN, LOW_LEVEL);
+	pin_mode_output(OW_DDR, OW_PIN);
+	pin_write( OW_PORT, OW_PIN, LOW_LEVEL);
 	_delay_us( 3 );
 	
-	PIN_MODE_INPUT(OW_PORT, OW_DDR, OW_PIN);
+	pin_mode_input(OW_PORT, OW_DDR, OW_PIN);
 	_delay_us( 10 );
 	
-	uint8_t bit = PIN_READ(OW_IN, OW_PIN);
+	uint8_t bit = pin_read(OW_IN, OW_PIN);
 	_delay_us( 53 );
 
 	return bit;

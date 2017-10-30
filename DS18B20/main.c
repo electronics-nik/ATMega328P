@@ -9,7 +9,7 @@
  */
   
 
-#include "../pins.h"
+#include "../sys_led.h"
 #include "i2c.h"
 #include "lcd.h"
 #include "rtc.h"
@@ -96,7 +96,7 @@ int main(void)
 
 	lcd_print_line1("                ", LIGHT_ON);
 
-	PIN_MODE_OUTPUT(DDRB, PB5);
+	led_init;
 
 	sei();
 
@@ -110,12 +110,12 @@ int main(void)
 		if(flag)
 		{
 			sprintf(lcd_buffer, "%02d.%02d.%02d   %02d:%02d", t.tm_mday, t.tm_mon, t.tm_year, t.tm_hour, t.tm_min);
-			PIN_WRITE(PORTB, PB5, LOW_LEVEL);
+			led_on;
 		}
 		else
 		{
 			sprintf(lcd_buffer, "%02d.%02d.%02d   %02d %02d", t.tm_mday, t.tm_mon, t.tm_year, t.tm_hour, t.tm_min);
-			PIN_WRITE(PORTB, PB5, HIGH_LEVEL);
+			led_off;
 		}
 
 		lcd_print_line2(lcd_buffer, LIGHT_ON);

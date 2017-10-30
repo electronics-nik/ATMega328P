@@ -35,8 +35,6 @@ int main(void)
 	_delay_ms(3000);
 	lcd_clear(LIGHT_ON);
 
-	uint8_t i = 0;
-
     while (true) 
     {
 		uint8_t error = am_get_data(&humidity, &temperature);
@@ -51,7 +49,8 @@ int main(void)
 				led_off;
 			}
 
-			sprintf(buffer, "Temp: %i.%i%cC", temperature / 10, temperature % 10, (char)223);
+			sprintf(buffer, "Temp: %i.%i%cC  AM", 
+				temperature / 10, temperature % 10, (char)223);
 			lcd_print_line1(buffer, LIGHT_ON);
 
 			sprintf(buffer, "Humi: %i.%i %%", humidity / 10, humidity % 10);
@@ -62,16 +61,8 @@ int main(void)
 			lcd_clear(LIGHT_ON);
 			lcd_print_line1("Error!", LIGHT_ON);
 		}
-
 		
-		
-		/*
-		sprintf(buffer, "%d -> %c", i, (char)i);
-		lcd_print_line1(buffer, LIGHT_ON);
-		*/
-
 		flag = !flag;
-		i++;
 		_delay_ms(500);
     }
 }

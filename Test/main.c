@@ -6,17 +6,17 @@
  */ 
 
 #include "../constants.h"
-#include "../pins.h"
+#include "../sys_led.h"
 #include <avr/wdt.h>
 
 
 int main(void)
 {
-	PIN_MODE_OUTPUT(DDRB, PB5);
-	PIN_WRITE(PORTB, PB5, LOW_LEVEL);
+	led_init;
+	led_off;
     /* Replace with your application code */
 	wdt_enable(WDTO_2S);
-	PIN_WRITE(PORTB, PB5, HIGH_LEVEL);
+	led_on;
 	_delay_ms(2500);
 
     while (1) 

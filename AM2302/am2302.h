@@ -11,12 +11,12 @@
 
 #include "../constants.h"
 
-#define DDR_SENSOR   DDRC
-#define PORT_SENSOR  PORTC
-#define PIN_SENSOR   PINC
-#define SENSOR       PC0
+#define AM_DDR		DDRC
+#define AM_PORT		PORTC
+#define AM_PIN		PINC
+#define AM_SENSOR	PC2
 
 void am_init(void);
-uint8_t am_get_data(uint16_t *humidity, uint16_t *temp);
+uint8_t am_get_data(uint16_t *humidity, uint16_t *temperature);
 
 #endif /* AM2302_H_ */
